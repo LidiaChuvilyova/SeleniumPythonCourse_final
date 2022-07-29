@@ -14,3 +14,4 @@ class ProductPageLocators():
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".col-sm-6.product_main>p.price_color")
     ALERT_INNER_STRONG = (By.XPATH, "//div[contains(@class,'alertinner')]/strong")
     BASKET_PRICE_TOTAL = (By.CSS_SELECTOR, ".alertinner>p>strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")
