@@ -18,9 +18,7 @@ class TestLoginFromMainPage():
         page.open()
         page.go_to_login_page()
         pageLogin = LoginPage(browser, link)
-        pageLogin.should_be_login_url()
-        pageLogin.should_be_login_form()
-        pageLogin.should_be_register_form()
+        pageLogin.should_be_login_page()
 
     def test_guest_should_see_login_link(self, browser):
         page = MainPage(browser, link)
