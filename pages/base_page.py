@@ -16,7 +16,22 @@ class BasePage():
     def open(self):
         self.browser.get(self.url)
 
-    def is_element_present(self, how, what, timeout = 15):
+    def get_all_elements(self, how, what):
+        try:
+            elements = self.browser.find_elements(how, what)
+        except NoSuchElementException:
+            return False
+        return elements
+
+    def go_to_login_page(self):
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+
+    def go_to_basket_page(self):
+        button = self.browser.find_element(*BasePageLocators.BASKET_BUTTON)
+        button.click()
+
+    def is_element_present(self, how, what, timeout = 20):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except NoSuchElementException:
@@ -25,27 +40,12 @@ class BasePage():
             return False
         return True
 
-    def get_all_elements(self, how, what):
-        try:
-            elements = self.browser.find_elements(how, what)
-        except NoSuchElementException:
-            return False
-        return elements
-
     def is_element_presented_in_list_by_text(self, list, text):
         found = False
         for x in list:
             if x.text == text:
                 found = True
         return found
-
-    def is_not_element_present(self, how, what, timeout=4):
-        try:
-            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
-        except TimeoutException:
-            return True
-
-        return False
 
     def is_disappeared(self, how, what, timeout=4):
         try:
@@ -56,13 +56,13 @@ class BasePage():
 
         return True
 
-    def go_to_login_page(self):
-        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
-        link.click()
+    def is_not_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
 
-    def go_to_basket_page(self):
-        button = self.browser.find_element(*BasePageLocators.BASKET_BUTTON)
-        button.click()
+        return False
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"

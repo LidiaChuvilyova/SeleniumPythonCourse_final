@@ -28,9 +28,10 @@ class ProductPage(BasePage):
         price = self.browser.find_element(*ProductPageLocators.BASKET_PRICE_TOTAL)
         assert expectedProductPrice == price.text, f"Basket total should be {expectedProductPrice}/nCurrent value: {price.text}"
 
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is not disappeared, but should be"
+
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but should not be"
 
-    def should_disappear_success_message(self):
-        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is not disappeared, but should be"
 
