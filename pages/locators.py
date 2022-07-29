@@ -15,3 +15,7 @@ class ProductPageLocators():
     ALERT_INNER_STRONG = (By.XPATH, "//div[contains(@class,'alertinner')]/strong")
     BASKET_PRICE_TOTAL = (By.CSS_SELECTOR, ".alertinner>p>strong")
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
