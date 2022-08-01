@@ -31,7 +31,7 @@ class BasePage():
         button = self.browser.find_element(*BasePageLocators.BASKET_BUTTON)
         button.click()
 
-    def is_element_present(self, how, what, timeout = 20):
+    def is_element_present(self, how, what, timeout=20):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
         except NoSuchElementException:
